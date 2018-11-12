@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import Input from './components/Input.jsx';
+import Step from './components/Step.jsx';
 
 class App extends Component {
 
@@ -24,7 +25,7 @@ class App extends Component {
                 value="<-"
               />
             </div>
-            <div>
+            <Step>
               <Input
                 type="text"
                 placeholder="Prop"
@@ -34,7 +35,7 @@ class App extends Component {
                 type="radio"
                 label="Radio button"
               />
-            </div>
+            </Step>
             <div>
               <Input
                 type="button"
