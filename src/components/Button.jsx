@@ -2,18 +2,61 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 class Button extends PureComponent {
-  render() {
-    const { value, id, className, onClick, type } = this.props;
+  renderSubmit = () => {
+    const {
+      value,
+      id,
+      className,
+      name,
+      onClick,
+      disabled
+    } = this.props;
 
     return (
       <input
         id={id}
         className={className}
-        type={type}
+        name={name}
+        type='submit'
+        disabled={disabled}
         value={value}
         onClick={onClick}
       />
     );
+  }
+
+  renderButton = (props) => {
+    const {
+      value,
+      id,
+      className,
+      name,
+      onClick,
+      disabled
+    } = this.props;
+
+    return (
+      <button
+        id={id}
+        className={className}
+        disabled={disabled}
+        name={name}
+        onClick={onClick}
+      >
+        { value }
+      </button>
+    );
+  }
+
+  render() {
+    const { type } = this.props;
+
+    switch(type.toLowerCase()) {
+      case 'submit':
+        return this.renderSubmit()
+      default:
+        return this.renderButton();
+    }
   }
 }
 
@@ -23,8 +66,9 @@ Button.propTypes = {
     PropTypes.string,
     PropTypes.number
   ]),
-  type: PropTypes.oneOf(['submit', 'button']),
+  type: PropTypes.oneOf(['submit', 'button']).isRequired,
   value: PropTypes.string,
+  disabled: PropTypes.bool,
   onClick: PropTypes.func 
 }
 

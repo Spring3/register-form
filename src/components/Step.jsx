@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+import './styles/Step.css';
+
 class Step extends PureComponent {
   render() {
     const { active, children } = this.props;
@@ -19,7 +21,10 @@ class Step extends PureComponent {
 
 Step.propTypes = {
   active: PropTypes.bool,
-  children: PropTypes.arrayOf(PropTypes.element)
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.element
+  ])
 }
 
 Step.defaultProps = {

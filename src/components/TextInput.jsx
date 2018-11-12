@@ -3,7 +3,17 @@ import PropTypes from 'prop-types';
 
 class TextInput extends PureComponent {
   render() {
-    const { id, className, name, label, value, placeholder, onChange } = this.props;
+    const {
+      id,
+      className,
+      name,
+      label,
+      type,
+      value,
+      placeholder,
+      onChange,
+      disabled
+    } = this.props;
 
     return (
       <div>
@@ -18,8 +28,9 @@ class TextInput extends PureComponent {
           id={id}
           name={name}
           className={className}
-          type="text"
+          type={type}
           placeholder={placeholder}
+          disabled={disabled}
           value={value}
           onChange={onChange}
         />
@@ -40,7 +51,9 @@ TextInput.propTypes = {
   ]),
   placeholder: PropTypes.string,
   value: PropTypes.string,
+  disabled: PropTypes.disabled,
   onChange: PropTypes.func,
+  type: PropTypes.oneOf(['text', 'email']),
   label: PropTypes.string
 }
 

@@ -3,7 +3,16 @@ import PropTypes from 'prop-types';
 
 class RadioButton extends PureComponent {
   render() {
-    const { id, className, checked, onChange, value, name, label } = this.props;
+    const {
+      id,
+      className,
+      checked,
+      onChange,
+      value,
+      name,
+      label,
+      disabled
+    } = this.props;
 
     return (
       <label>
@@ -12,6 +21,7 @@ class RadioButton extends PureComponent {
           className={className}
           name={name}
           checked={checked}
+          disabled={disabled}
           type="radio"
           onChange={onChange}
           value={value}
@@ -38,6 +48,7 @@ RadioButton.propTypes = {
     PropTypes.string
   ]),
   checked: PropTypes.bool,
+  disabled: PropTypes.bool,
   onChange: PropTypes.func
 };
 

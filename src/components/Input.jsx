@@ -7,7 +7,18 @@ import RadioButton from './RadioButton.jsx';
 
 class Input extends PureComponent {
   render() {
-    const { id, className, name, type, placeholder, value, onChange, onClick, label } = this.props;
+    const {
+      id,
+      className,
+      name,
+      type,
+      placeholder,
+      value,
+      onChange,
+      onClick,
+      label,
+      disabled
+    } = this.props;
 
     switch(type.toLowerCase()) {
       case 'submit':
@@ -19,6 +30,7 @@ class Input extends PureComponent {
             type={type}
             onClick={onClick}
             value={value}
+            disabled={disabled}
           />
         );
       case 'radio':
@@ -30,6 +42,7 @@ class Input extends PureComponent {
             value={value}
             onChange={onChange}
             label={label}
+            disabled={disabled}
           />
         );
       default:
@@ -42,6 +55,7 @@ class Input extends PureComponent {
             value={value}
             onChange={onChange}
             label={label}
+            disabled={disabled}
           />
         );
     }
@@ -58,10 +72,11 @@ Input.propTypes = {
     PropTypes.string,
     PropTypes.number
   ]),
-  type: PropTypes.oneOf(['text', 'submit', 'button', 'radio']),
+  type: PropTypes.oneOf(['text', 'submit', 'button', 'radio', 'email', 'tel']),
   placeholder: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
+  disabled: PropTypes.bool,
   label: PropTypes.string
 }
 
