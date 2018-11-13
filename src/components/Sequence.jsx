@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Step from './Step';
 
-class StepIterator extends PureComponent {
+class Sequence extends PureComponent {
   render() {
     const { children, activeIndex } = this.props;
 
@@ -16,9 +16,9 @@ class StepIterator extends PureComponent {
   }
 }
 
-StepIterator.propTypes = {
+Sequence.propTypes = {
   activeIndex: PropTypes.number,
   children: PropTypes.node
 }
 
-export default StepIterator;
+export default Sequence;

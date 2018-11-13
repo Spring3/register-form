@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import SequenceForm from './components/SequenceForm.jsx';
 import Input from './components/Input.jsx';
-import StepIterator from './components/StepIterator.jsx';
+import Sequence from './components/Sequence.jsx';
 import Step from './components/Step.jsx';
 import RadioGroup from './components/RadioGroup.jsx';
-
-import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
 
 class App extends Component {
   constructor(props) {
@@ -16,8 +15,7 @@ class App extends Component {
       fullName: undefined,
       email: undefined,
       phoneNumber: undefined,
-      salary: undefined,
-      progress: 0
+      salary: undefined
     }
   }
 
@@ -25,111 +23,92 @@ class App extends Component {
     e.preventDefault();
   }
 
-  onSalarySelect = (e) => {
-    console.log(e.target.value);
+  changeFullName = (e) => {
+    this.setState({
+      fullName: e.target.value
+    });
+  }
+
+  changeEmail = (e) => {
+    this.setState({
+      email: e.target.value
+    });
+  }
+
+  changePhoneNumber = (e) => {
+    this.setState({
+      phoneNumber: e.target.value
+    });
+  }
+
+  changeSalary = (e) => {
     this.setState({
       salary: e.target.value
     });
   }
 
-  nextStep = () => {
-    const nextStep = 
-    this.setState({
-      progress: this.state.progress + 1
-    });
-  }
-
-  prevStep = () => {
-    this.setState({
-      progress: this.state.progress - 1
-    });
-  }
-
   render() {
-    const { salary, progress } = this.state;
+    const { salary } = this.state;
 
     return (
       <main>
         <section>
-          <form onSubmit={this.onSubmit}>
-            <div>
-              <Input
-                className="back"
-                type="button"
-                value={<ArrowLeftIcon />}
-                onClick={this.prevStep}
-              />
-            </div>
-            <StepIterator
-              activeIndex={progress}
+          <SequenceForm
+            onSubmit={this.onSubmit}
+          >
+            <Input
+              type="text"
+              placeholder="John Doe"
+              required={true}
+              label="Full Name"
+              onChange={this.changeFullName}
+            />
+            <Input
+              type="email"
+              placeholder="example@domain.com"
+              required={true}
+              label="Email"
+              onChange={this.changeEmail}
+            />
+            <Input
+              type="tel"
+              required={true}
+              label="Phone Number"
+              onChange={this.changePhoneNumber}
+            />
+            <RadioGroup
+              checkedValue={salary}
+              title="Salary Indication"
+              required={true}
+              onClick={this.changeSalary}
             >
-              <Step>
-                <Input
-                  type="text"
-                  placeholder="John Doe"
-                  required={true}
-                  label="Full Name"
-                />
-              </Step>
-              <Step>
-                <Input
-                  type="email"
-                  placeholder="example@domain.com"
-                  required={true}
-                  label="Email"
-                />
-              </Step>
-              <Step>
-                <Input
-                  type="tel"
-                  required={true}
-                  label="Phone Number"
-                />
-              </Step>
-              <Step>
-                <RadioGroup
-                  value={salary}
-                  title="Salary Indication"
-                  required={true}
-                  onClick={this.onSalarySelect}
-                >
-                  <Input
-                    value="0 - 1.000"
-                    label="0 - 1.000"
-                    type="radio"
-                  />
-                  <Input
-                    value="1.000 - 2.000"
-                    label="1.000 - 2.000"
-                    type="radio"
-                  />
-                  <Input
-                    value="2.000 - 3.000"
-                    label="2.000 - 3.000"
-                    type="radio"
-                  />
-                  <Input
-                    value="3.000 - 4.000"
-                    label="3.000 - 4.000"
-                    type="radio"
-                  />
-                  <Input
-                    value="Mehr als 4.000"
-                    label="Mehr als 4.000"
-                    type="radio"
-                  />
-                </RadioGroup>
-              </Step>
-            </StepIterator>
-            <div>
               <Input
-                type="button"
-                value="Next"
-                onClick={this.nextStep}
+                value="0 - 1.000"
+                label="0 - 1.000"
+                type="radio"
               />
-            </div>
-            <div>ProgressBar</div>
-          </form>
+              <Input
+                value="1.000 - 2.000"
+                label="1.000 - 2.000"
+                type="radio"
+              />
+              <Input
+                value="2.000 - 3.000"
+                label="2.000 - 3.000"
+                type="radio"
+              />
+              <Input
+                value="3.000 - 4.000"
+                label="3.000 - 4.000"
+                type="radio"
+              />
+              <Input
+                value="Mehr als 4.000"
+                label="Mehr als 4.000"
+                type="radio"
+              />
+            </RadioGroup>
+          </SequenceForm>
         </section>
       </main>
     );

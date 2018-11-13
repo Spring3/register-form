@@ -9,7 +9,7 @@ class RadioGroup extends PureComponent {
     const {
       children,
       title,
-      value,
+      checkedValue,
       onClick,
       required
     } = this.props;
@@ -24,7 +24,7 @@ class RadioGroup extends PureComponent {
           React.Children.map(children, (child) => {
             if (child.type === RadioButton || (child.type === Input && child.props.type === 'radio')) {
               return React.cloneElement(child, {
-                checked: value === child.props.value,
+                checked: checkedValue === child.props.value,
                 onClick,
                 required
               });
@@ -40,7 +40,7 @@ class RadioGroup extends PureComponent {
 
 RadioGroup.propTypes = {
   title: PropTypes.string,
-  value: PropTypes.oneOfType([
+  checkedValue: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
   ]),
