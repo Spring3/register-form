@@ -81,7 +81,8 @@ class App extends Component {
       : Joi.validate(val, Joi.string().regex(new RegExp(E164Regex)))
     this.commitValidationResult(result);
     if (result && result.error instanceof Error) {
-      return { error: new Error('The "value" must match the E164 format') };
+      result.error = new Error('The "value" must match the E164 format');
+      return result;
     }
     return true;
   }

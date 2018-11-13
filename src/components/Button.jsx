@@ -13,7 +13,7 @@ class Button extends PureComponent {
     } = this.props;
 
     return (
-      <input
+      <button
         id={id}
         className={className}
         name={name}
@@ -38,6 +38,7 @@ class Button extends PureComponent {
     return (
       <button
         id={id}
+        type="button"
         className={className}
         disabled={disabled}
         name={name}

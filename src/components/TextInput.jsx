@@ -44,7 +44,6 @@ class TextInput extends PureComponent {
       'input-error': error
     });
 
-    // if we have a validate function, we don't need to use the default html validation
     const htmlRequired = !validate && required;
 
     return (
