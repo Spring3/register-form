@@ -11,8 +11,7 @@ class RadioButton extends PureComponent {
       value,
       name,
       label,
-      disabled,
-      required
+      disabled
     } = this.props;
 
     return (
@@ -24,7 +23,6 @@ class RadioButton extends PureComponent {
           checked={checked}
           disabled={disabled}
           type="radio"
-          required={required}
           onChange={onChange}
           value={value}
         />
@@ -51,8 +49,7 @@ RadioButton.propTypes = {
   ]),
   checked: PropTypes.bool,
   disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  required: PropTypes.bool
+  onChange: PropTypes.func
 };
 
 RadioButton.defaultProps = {

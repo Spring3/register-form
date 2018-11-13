@@ -16,7 +16,8 @@ class SequenceForm extends Component {
     };
   }
 
-  nextStep = () => {
+  nextStep = (e) => {
+    e.preventDefault();
     const { progress } = this.state;
     const { children } = this.props;
 
@@ -38,7 +39,7 @@ class SequenceForm extends Component {
   }
 
   render() {
-    const { children, onSubmit } = this.props;
+    const { children, onSubmit, hasError } = this.props;
     const { progress } = this.state;
     const backBtnClass = classnames('button-back', {
       'button-invisible': progress === 0
@@ -65,6 +66,7 @@ class SequenceForm extends Component {
               <Input
                 type="button"
                 value="Next"
+                disabled={hasError}
                 onClick={this.nextStep}
               />
             )
@@ -72,6 +74,7 @@ class SequenceForm extends Component {
               <Input
                 type="submit"
                 value="Submit"
+                disabled={hasError}
               />
             )
           }
@@ -84,7 +87,8 @@ class SequenceForm extends Component {
 
 SequenceForm.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element),
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
+  hasError: PropTypes.bool
 }
 
 export default SequenceForm;

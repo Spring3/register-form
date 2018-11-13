@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import Joi from 'joi';
+
 import './App.css';
 
 import SequenceForm from './components/SequenceForm.jsx';
 import Input from './components/Input.jsx';
-import Sequence from './components/Sequence.jsx';
-import Step from './components/Step.jsx';
 import RadioGroup from './components/RadioGroup.jsx';
+
+const E164Regex = '^\\+?[1-9]\\d{1,14}$';
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +17,8 @@ class App extends Component {
       fullName: undefined,
       email: undefined,
       phoneNumber: undefined,
-      salary: undefined
+      salary: undefined,
+      hasError: false
     }
   }
 
@@ -47,20 +50,58 @@ class App extends Component {
     });
   }
 
+  commitValidationResult = (result) => {
+    const { error } = result;
+    if (error || this.state.hasError) {
+      this.setState({
+        hasError: error instanceof Error
+      });
+    }
+  }
+
+  validateStringValue = (val, required) => {
+    const validationResult = required
+      ? Joi.validate(val, Joi.string().required())
+      : Joi.validate(val, Joi.string());
+    this.commitValidationResult(validationResult);
+    return validationResult;
+  }
+
+  validateEmail = (val, required) => {
+    const validationResult = required
+      ? Joi.validate(val, Joi.string().email().required())
+      : Joi.validate(val, Joi.string().email());
+    this.commitValidationResult(validationResult);
+    return validationResult
+  }
+
+  validatePhoneNumber = (val, required) => {
+    const result = required
+      ? Joi.validate(val, Joi.string().regex(new RegExp(E164Regex)).required())
+      : Joi.validate(val, Joi.string().regex(new RegExp(E164Regex)))
+    this.commitValidationResult(result);
+    if (result && result.error instanceof Error) {
+      return { error: new Error('The "value" must match the E164 format') };
+    }
+    return true;
+  }
+
   render() {
-    const { salary } = this.state;
+    const { salary, hasError } = this.state;
 
     return (
       <main>
         <section>
           <SequenceForm
             onSubmit={this.onSubmit}
+            hasError={hasError}
           >
             <Input
               type="text"
               placeholder="John Doe"
               required={true}
               label="Full Name"
+              validate={this.validateStringValue}
               onChange={this.changeFullName}
             />
             <Input
@@ -69,18 +110,21 @@ class App extends Component {
               required={true}
               label="Email"
               onChange={this.changeEmail}
+              validate={this.validateEmail}
             />
             <Input
               type="tel"
               required={true}
               label="Phone Number"
               onChange={this.changePhoneNumber}
+              validate={this.validatePhoneNumber}
             />
             <RadioGroup
               checkedValue={salary}
               title="Salary Indication"
               required={true}
               onChange={this.changeSalary}
+              validate={this.validateStringValue}
             >
               <Input
                 value="0 - 1.000"

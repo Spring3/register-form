@@ -19,7 +19,8 @@ class Input extends PureComponent {
       label,
       checked,
       disabled,
-      required
+      required,
+      validate
     } = this.props;
 
     switch(type.toLowerCase()) {
@@ -46,7 +47,6 @@ class Input extends PureComponent {
             label={label}
             checked={checked}
             disabled={disabled}
-            required={required}
           />
         );
       default:
@@ -55,12 +55,14 @@ class Input extends PureComponent {
             id={id}
             className={className}
             name={name}
+            type={type}
             placeholder={placeholder}
             value={value}
             onChange={onChange}
             label={label}
             disabled={disabled}
             required={required}
+            validate={validate}
           />
         );
     }
@@ -81,6 +83,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.node,
   onChange: PropTypes.func,
+  validate: PropTypes.func,
   disabled: PropTypes.bool,
   label: PropTypes.string,
   required: PropTypes.bool
