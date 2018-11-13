@@ -42,7 +42,7 @@ class Input extends PureComponent {
             className={className}
             name={name}
             value={value}
-            onClick={onClick}
+            onChange={onChange}
             label={label}
             checked={checked}
             disabled={disabled}

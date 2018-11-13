@@ -80,7 +80,7 @@ class App extends Component {
               checkedValue={salary}
               title="Salary Indication"
               required={true}
-              onClick={this.changeSalary}
+              onChange={this.changeSalary}
             >
               <Input
                 value="0 - 1.000"
