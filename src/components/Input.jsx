@@ -17,7 +17,9 @@ class Input extends PureComponent {
       onChange,
       onClick,
       label,
-      disabled
+      checked,
+      disabled,
+      required
     } = this.props;
 
     switch(type.toLowerCase()) {
@@ -40,9 +42,11 @@ class Input extends PureComponent {
             className={className}
             name={name}
             value={value}
-            onChange={onChange}
+            onClick={onClick}
             label={label}
+            checked={checked}
             disabled={disabled}
+            required={required}
           />
         );
       default:
@@ -56,6 +60,7 @@ class Input extends PureComponent {
             onChange={onChange}
             label={label}
             disabled={disabled}
+            required={required}
           />
         );
     }
@@ -74,10 +79,11 @@ Input.propTypes = {
   ]),
   type: PropTypes.oneOf(['text', 'submit', 'button', 'radio', 'email', 'tel']),
   placeholder: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.node,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
-  label: PropTypes.string
+  label: PropTypes.string,
+  required: PropTypes.bool
 }
 
 Input.defaultProps = {

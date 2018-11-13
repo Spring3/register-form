@@ -12,7 +12,8 @@ class TextInput extends PureComponent {
       value,
       placeholder,
       onChange,
-      disabled
+      disabled,
+      required
     } = this.props;
 
     return (
@@ -32,6 +33,7 @@ class TextInput extends PureComponent {
           placeholder={placeholder}
           disabled={disabled}
           value={value}
+          required={required}
           onChange={onChange}
         />
       </div>
@@ -51,10 +53,11 @@ TextInput.propTypes = {
   ]),
   placeholder: PropTypes.string,
   value: PropTypes.string,
-  disabled: PropTypes.disabled,
+  disabled: PropTypes.bool,
   onChange: PropTypes.func,
   type: PropTypes.oneOf(['text', 'email']),
-  label: PropTypes.string
+  label: PropTypes.string,
+  required: PropTypes.bool
 }
 
 export default TextInput;
