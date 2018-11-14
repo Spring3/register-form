@@ -93,7 +93,7 @@ TextInput.propTypes = {
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
   validate: PropTypes.func,
-  type: PropTypes.oneOf(['text', 'email', 'tel']),
+  type: PropTypes.oneOf(['text', 'email', 'number']),
   label: PropTypes.string,
   required: PropTypes.bool
 }

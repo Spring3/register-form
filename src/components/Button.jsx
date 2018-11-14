@@ -13,7 +13,7 @@ class Button extends PureComponent {
     } = this.props;
 
     return (
-      <button
+      <input
         id={id}
         className={className}
         name={name}

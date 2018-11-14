@@ -8,6 +8,7 @@ class RadioGroup extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      checkedValue: props.checkedValue,
       error: { message: 'Value selection is mandatory' }
     };
   }
@@ -19,20 +20,21 @@ class RadioGroup extends PureComponent {
     if (validate) {
       const validationResult = validate(value, required);
       this.setState({
+        checkedValue: value,
         error: validationResult !== true ? validationResult.error : undefined
       });
+    } else {
+      this.setState({
+        checkedValue: value
+      });
     }
+
     onChange(e);
   }
 
   render() {
-    const {
-      children,
-      title,
-      checkedValue
-    } = this.props;
-
-    const { error } = this.state;
+    const { children, title } = this.props;
+    const { checkedValue, error } = this.state;
 
     return (
       <Fragment>

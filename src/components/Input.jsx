@@ -79,7 +79,7 @@ Input.propTypes = {
     PropTypes.string,
     PropTypes.number
   ]),
-  type: PropTypes.oneOf(['text', 'submit', 'button', 'radio', 'email', 'tel']),
+  type: PropTypes.oneOf(['text', 'submit', 'button', 'radio', 'email', 'number']),
   placeholder: PropTypes.string,
   value: PropTypes.node,
   onChange: PropTypes.func,

@@ -9,40 +9,19 @@ import Step from './Step.jsx';
 import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
 
 class SequenceForm extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      progress: 0
-    };
-  }
-
   nextStep = (e) => {
     e.preventDefault();
-    const { progress } = this.state;
-    const { children } = this.props;
+    const { children, activeStep } = this.props;
 
-    if (progress < children.length - 1) {
-      this.setState({
-        progress: progress + 1
-      });
-    }
-  }
-
-  prevStep = () => {
-    const { progress } = this.state;
-    
-    if (progress > 0) {
-      this.setState({
-        progress: progress - 1
-      });
+    if (activeStep < children.length - 1) {
+      this.props.next();
     }
   }
 
   render() {
-    const { children, onSubmit, hasError } = this.props;
-    const { progress } = this.state;
+    const { children, onSubmit, canGoNext, activeStep } = this.props;
     const backBtnClass = classnames('button-back', {
-      'button-invisible': progress === 0
+      'button-invisible': activeStep === 0
     });
 
     return (
@@ -52,21 +31,21 @@ class SequenceForm extends PureComponent {
             className={backBtnClass}
             type="button"
             value={<ArrowLeftIcon />}
-            onClick={this.prevStep}
+            onClick={this.props.previous}
           />
         </div>
         <Sequence
-          activeIndex={progress}
+          activeIndex={activeStep}
         >
           { React.Children.map(children, child => (<Step>{child}</Step>)) }
         </Sequence>
         <div>
-          { progress < children.length - 1
+          { activeStep < children.length - 1
             ? ( 
               <Input
                 type="button"
                 value="Next"
-                disabled={hasError}
+                disabled={!canGoNext}
                 onClick={this.nextStep}
               />
             )
@@ -74,7 +53,7 @@ class SequenceForm extends PureComponent {
               <Input
                 type="submit"
                 value="Submit"
-                disabled={hasError}
+                disabled={!canGoNext || activeStep < children.length - 1}
               />
             )
           }
@@ -88,7 +67,11 @@ class SequenceForm extends PureComponent {
 SequenceForm.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element),
   onSubmit: PropTypes.func,
-  hasError: PropTypes.bool
+  next: PropTypes.func,
+  previous: PropTypes.func,
+  activeStep: PropTypes.number,
+  progress: PropTypes.number,
+  canGoNext: PropTypes.bool,
 }
 
 export default SequenceForm;
