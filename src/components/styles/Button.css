@@ -23,25 +23,11 @@ input[type="submit"] {
 .button-next,
 .button-next-submit {
   float: right;
+  width: 100%;
 }
 
 input[type="submit"]:disabled,
 button:disabled {
   background: #EAEAEA;
-}
-
-
-/* 
-  Phones
-*/
-@media screen and (max-width: 599px) and (orientation: portrait),
-  screen and (max-device-width: 767px) and (orientation: landscape) {
-  button,
-  input[type="submit"] {
-    width: 100%;
-  }
-
-  .button-back {
-    width: auto;
-  }
+  box-shadow: none;
 }

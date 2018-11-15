@@ -12,3 +12,17 @@
   margin-bottom: 20px;
 }
 
+/* Laptops + */
+@media (min-width: 1025px) {
+  .sequence-form {
+    width: 40%;
+  }
+}
+
+/* Tablets  */
+@media screen and (min-width: 600px) and (max-width: 1024px),
+  screen and (min-width: 600px) and (max-width: 1024px) and (orientation: landscape) {
+  .sequence-form {
+    width: 40%;
+  }
+}

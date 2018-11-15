@@ -28,3 +28,26 @@
 .button-container {
   width: 100%;
 }
+
+/* Laptops + */
+@media (min-width: 1025px) {
+  .result-view {
+    width: 40%;
+  }
+
+  .result-view > .button-container > button {
+    width: 100%;
+  }
+}
+
+/* Tablets  */
+@media screen and (min-width: 600px) and (max-width: 1024px),
+  screen and (min-width: 600px) and (max-width: 1024px) and (orientation: landscape) {
+  .result-view {
+    width: 40%;
+  }
+
+  .result-view > .button-container > button {
+    width: 100%;
+  }
+}
