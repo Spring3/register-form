@@ -12,12 +12,27 @@ import './styles/SequenceForm.css';
 import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
 
 class SequenceForm extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.formRef = React.createRef();
+  }
+
   nextStep = (e) => {
     e.preventDefault();
     const { children, activeStep } = this.props;
 
     if (activeStep < children.length - 1) {
       this.props.next();
+    }
+  }
+
+  onKeyUp = (e) => {
+    if (e.key.toLowerCase() === 'enter') {
+      e.preventDefault();
+      const { canGoNext, activeStep, children, next } = this.props;
+      if (canGoNext && activeStep < children.length - 1) {
+        next();
+      }
     }
   }
 
@@ -35,6 +50,8 @@ class SequenceForm extends PureComponent {
       <form
         onSubmit={onSubmit}
         className="sequence-form"
+        onKeyUp={this.onKeyUp}
+        ref={this.formRef}
       >
         <div className="button-container">
           <Input
