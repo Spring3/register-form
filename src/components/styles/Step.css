@@ -1,6 +1,7 @@
 .step {
   display: none;
   padding: 20px 0px;
+  min-height: 100px;
 }
 
 .step-active {

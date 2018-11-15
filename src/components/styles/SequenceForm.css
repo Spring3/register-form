@@ -6,5 +6,9 @@
   width: 70%;
   padding: 20px;
   min-height: 250px;
-  box-shadow: 0px 0px 20px 0px #E2E2E2;
 }
+
+.button-container {
+  margin-bottom: 20px;
+}
+

@@ -36,11 +36,11 @@ class SequenceForm extends PureComponent {
         onSubmit={onSubmit}
         className="sequence-form"
       >
-        <div>
+        <div className="button-container">
           <Input
             className={backBtnClass}
             type="button"
-            value={<ArrowLeftIcon />}
+            value={<ArrowLeftIcon color="teal" size={35}/>}
             onClick={this.props.previous}
           />
         </div>
@@ -49,7 +49,7 @@ class SequenceForm extends PureComponent {
         >
           { React.Children.map(children, child => (<Step>{child}</Step>)) }
         </Sequence>
-        <div>
+        <div className="button-container">
           { activeStep < children.length - 1
             ? ( 
               <Input

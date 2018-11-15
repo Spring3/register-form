@@ -13,6 +13,8 @@ import {
   finish
 } from '../actions/actions.js';
 
+import './styles/FormView.css';
+
 import SequenceForm from '../components/SequenceForm.jsx';
 import Input from '../components/Input.jsx';
 import RadioGroup from '../components/RadioGroup.jsx';
@@ -87,6 +89,7 @@ class FormView extends Component {
 
     return (
       <section>
+        <h3>Sign up with Home</h3>
         <SequenceForm
           onSubmit={this.onSubmit}
           activeStep={activeStep}
@@ -115,6 +118,7 @@ class FormView extends Component {
             type="number"
             required={true}
             label="Phone Number"
+            placeholder="+011234567890"
             onChange={this.changePhoneNumber}
             validate={this.validatePhoneNumber}
           />

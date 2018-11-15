@@ -1,0 +1,30 @@
+.result-view {
+  width: 70%;
+  padding: 20px;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-view-list {
+  width: 100%;
+  list-style-type: none;
+  display: inherit;
+  flex-direction: column;
+  padding: 20px;
+  font-size: 14px;
+}
+
+.result-view-list .key {
+  font-weight: bold;
+}
+
+.result-view-list .value {
+  float: right;
+}
+
+.button-container {
+  width: 100%;
+}
