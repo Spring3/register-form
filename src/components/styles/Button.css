@@ -19,3 +19,7 @@
   float: right;
   border-radius: 5px;
 }
+
+button:disabled {
+  background: #EAEAEA;
+}

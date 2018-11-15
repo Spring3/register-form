@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Joi from 'joi';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import {
   fullNameChange,
   emailChange,
@@ -22,7 +23,11 @@ class FormView extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     this.props.finish();
-    console.log('Submitted');
+    // just to let a user some time to realize that the form was finished
+    // also kind of simulates the POST request that is usually made
+    setTimeout(() => {
+      this.props.history.push('/results');
+    }, 500);
   }
 
   changeFullName = (e) => {
@@ -169,4 +174,4 @@ const mapDispatchToProps = dispatch => ({
   finish: () => dispatch(finish())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormView);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FormView));

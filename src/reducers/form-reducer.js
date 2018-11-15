@@ -1,13 +1,11 @@
 import * as actions from '../actions/actions.js';
 
 export const initialState = {
-  fullName: undefined,
-  email: undefined,
-  phoneNumber: undefined,
-  salary: undefined,
   wasStepValidated: false,
+  allValidationErrors: {},
   validationError: undefined,
   progress: 0,
+  maxReachedProgress: 0,
   activeStep: 0
 }
 
@@ -18,37 +16,34 @@ export const reducer = (state = initialState, action) => {
       // update progress only if we move one step further
       // this protects from incrementing progress if user went back and then went next again
       const progress = nextStepIndex > state.progress ? nextStepIndex : state.progress;
+      const maxReachedProgress = progress > state.maxReachedProgress ? progress : state.maxReachedProgress;
       return {
         ...state,
         // if we went back and then clicked "Next", validation already passed
-        wasStepValidated: progress <= state.progress,
+        wasStepValidated: nextStepIndex < state.maxReachedProgress,
         activeStep: nextStepIndex,
-        progress
+        progress,
+        validationError: state.validationErrors[nextStepIndex],
+        maxReachedProgress
       };
     case actions.SHOW_PREVIOUS:
+      const previousStepIndex = state.activeStep > 0 ? state.activeStep - 1 : 0;
       return {
         ...state,
-        activeStep: state.activeStep > 0 ? state.activeStep - 1 : 0,
-        wasStepValidated: true
+        activeStep: previousStepIndex,
+        wasStepValidated: true,
+        validationError: state.validationErrors[previousStepIndex]
       };
     case actions.FINISH:
-      return {
-        ...state,
-        progress: state.progress + 1
-      };
-    case actions.FULL_NAME_CHANGE:
-      return { ...state, fullName: action.value };
-    case actions.EMAIL_CHANGE:
-      return { ...state, email: action.value };
-    case actions.PHONE_NUMBER_CHANGE:
-      return { ...state, phoneNumber: action.value };
-    case actions.SALARY_CHANGE:
-      return { ...state, salary: action.value };
+      return { ...state, progress: state.progress + 1 };
+    case actions.RESET:
+      return { ...initialState };
     case actions.VALIDATION_RESULT:
       return {
         ...state,
         wasStepValidated: true,
-        validationError: action.value
+        validationError: action.value,
+        validationErrors: {...state.validationErrors, [state.activeStep]: action.value }
       };
     default:
       return state;
