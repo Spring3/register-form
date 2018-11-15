@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import './styles/Input.css';
+
 import Button from './Button.jsx';
 import TextInput from './TextInput.jsx';
 import RadioButton from './RadioButton.jsx';

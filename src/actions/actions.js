@@ -1,5 +1,6 @@
 export const SHOW_NEXT = 'NEXT';
 export const SHOW_PREVIOUS = 'BACK';
+export const FINISH = 'FINISH';
 export const FULL_NAME_CHANGE = 'FULL_NAME_CHANGE';
 export const EMAIL_CHANGE = 'EMAIL_CHANGE';
 export const PHONE_NUMBER_CHANGE = 'PHONE_NUMBER_CHANGE';
@@ -12,6 +13,10 @@ export const showNext = () => ({
 
 export const showPrevious = () => ({
   type: SHOW_PREVIOUS
+});
+
+export const finish = () => ({
+  type: FINISH
 });
 
 export const fullNameChange = (value) => ({

@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import './styles/RadioButton.css';
+
 class RadioButton extends PureComponent {
   render() {
     const {
@@ -15,19 +17,21 @@ class RadioButton extends PureComponent {
     } = this.props;
 
     return (
-      <label>
-        <input
-          id={id}
-          className={className}
-          name={name}
-          checked={checked}
-          disabled={disabled}
-          type="radio"
-          onChange={onChange}
-          value={value}
-        />
-        {label}
-      </label>
+      <div className="radio-button">
+        <label>
+          <input
+            id={id}
+            className={className}
+            name={name}
+            checked={checked}
+            disabled={disabled}
+            type="radio"
+            onChange={onChange}
+            value={value}
+          />
+          {label}
+        </label>
+      </div>
     );
   }
 }

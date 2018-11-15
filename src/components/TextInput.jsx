@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -47,33 +47,34 @@ class TextInput extends PureComponent {
     const htmlRequired = !validate && required;
 
     return (
-      <div>
-        <div>
-          <label
-            htmlFor={id || name || className}
-          >
-            {label}
-          </label>
+      <Fragment>
+        <label
+          htmlFor={id || name || className}
+          className="input-label"
+        >
+          {label}
+        </label>
+        <div className="input-container">
+          <input
+            id={id}
+            name={name}
+            className={inputClass}
+            type={type}
+            placeholder={placeholder}
+            disabled={disabled}
+            value={value}
+            required={htmlRequired}
+            onChange={this.handleChange}
+          />
         </div>
-        <input
-          id={id}
-          name={name}
-          className={inputClass}
-          type={type}
-          placeholder={placeholder}
-          disabled={disabled}
-          value={value}
-          required={htmlRequired}
-          onChange={this.handleChange}
-        />
         {
           error && (
-            <div>
-              <p>{error.message}</p>
+            <div className="error-message">
+              <span>{error.message}</span>
             </div>
           )
         }
-      </div>
+      </Fragment>
     );
   }
 }

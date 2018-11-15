@@ -1,6 +1,8 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
+import './styles/RadioGroup.css';
+
 import RadioButton from './RadioButton.jsx';
 import Input from './Input.jsx';
 
@@ -38,10 +40,10 @@ class RadioGroup extends PureComponent {
 
     return (
       <Fragment>
-        <label>
+        <label className="radio-group-label">
           {title}
         </label>
-        <div>
+        <div className="radio-group">
         {
           React.Children.map(children, (child) => {
             if (child.type === RadioButton || (child.type === Input && child.props.type === 'radio')) {
@@ -56,7 +58,7 @@ class RadioGroup extends PureComponent {
         </div>
         {
           error && (
-            <div>
+            <div className="error-message">
               <p>{error.message}</p>
             </div>
           )

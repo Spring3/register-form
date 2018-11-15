@@ -3,12 +3,19 @@ html, body, #root, #root > main {
 }
 
 main {
+  height: 100%;
+}
+
+section {
   display: flex;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-section {
-
+.error-message {
+  margin-top: 20px;
+  color: #e53d54;
+  font-size: 14px;
 }

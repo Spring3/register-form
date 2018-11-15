@@ -1,0 +1,26 @@
+.input-container {
+  border-bottom: 2px solid #EAEAEA;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+  display: block;
+  width: 95%;
+  /* background: #F5F5F5; */
+  border: none;
+  padding: 10px 0px;
+  margin: 0 auto;
+  font-size: 14px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus {
+  outline: none;
+}
+
+.input-label {
+  font-size: 14px;
+  font-weight: bold;
+}

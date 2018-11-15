@@ -5,6 +5,9 @@ import classnames from 'classnames';
 import Input from './Input.jsx';
 import Sequence from './Sequence.jsx';
 import Step from './Step.jsx';
+import ProgressBar from './ProgressBar.jsx';
+
+import './styles/SequenceForm.css';
 
 import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
 
@@ -19,13 +22,20 @@ class SequenceForm extends PureComponent {
   }
 
   render() {
-    const { children, onSubmit, canGoNext, activeStep } = this.props;
+    const { children, onSubmit, canGoNext, activeStep, progress } = this.props;
     const backBtnClass = classnames('button-back', {
       'button-invisible': activeStep === 0
     });
+    const difference = children.length - progress;
+    const progressLabel = difference > 0
+      ? `${difference} more to go`
+      : 'Finished!';
 
     return (
-      <form onSubmit={onSubmit}>
+      <form
+        onSubmit={onSubmit}
+        className="sequence-form"
+      >
         <div>
           <Input
             className={backBtnClass}
@@ -44,13 +54,15 @@ class SequenceForm extends PureComponent {
             ? ( 
               <Input
                 type="button"
-                value="Next"
+                className="button-next"
+                value={<div>Next</div>}
                 disabled={!canGoNext}
                 onClick={this.nextStep}
               />
             )
             : (
               <Input
+                className="button-next-submit"
                 type="submit"
                 value="Submit"
                 disabled={!canGoNext || activeStep < children.length - 1}
@@ -58,7 +70,11 @@ class SequenceForm extends PureComponent {
             )
           }
         </div>
-        <div>ProgressBar</div>
+        <ProgressBar
+          label={progressLabel}
+          current={progress}
+          max={children.length}
+        />
       </form>
     );
   }

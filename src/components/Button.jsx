@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import './styles/Button.css';
+
 class Button extends PureComponent {
   renderSubmit = () => {
     const {

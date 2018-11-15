@@ -31,6 +31,11 @@ export const reducer = (state = initialState, action) => {
         activeStep: state.activeStep > 0 ? state.activeStep - 1 : 0,
         wasStepValidated: true
       };
+    case actions.FINISH:
+      return {
+        ...state,
+        progress: state.progress + 1
+      };
     case actions.FULL_NAME_CHANGE:
       return { ...state, fullName: action.value };
     case actions.EMAIL_CHANGE:

@@ -1,0 +1,21 @@
+.button-back {
+  padding: 0px;
+}
+
+.button-invisible {
+  visibility: hidden;
+}
+
+.button-next,
+.button-next-submit {
+  padding: 10px 30px;
+  box-shadow: 0px 2px 10px 1px #EAEAEA;
+  /* border: 2px solid #595959; */
+  border: none;
+  background: white;
+  color: #333333;
+  font-size: 14px;
+  font-weight: bold;
+  float: right;
+  border-radius: 5px;
+}

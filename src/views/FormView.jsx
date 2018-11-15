@@ -8,7 +8,8 @@ import {
   salaryChange,
   validationResult,
   showNext,
-  showPrevious
+  showPrevious,
+  finish
 } from '../actions/actions.js';
 
 import SequenceForm from '../components/SequenceForm.jsx';
@@ -20,6 +21,8 @@ const E164Regex = '^\\+?[1-9]\\d{1,14}$';
 class FormView extends Component {
   onSubmit = (e) => {
     e.preventDefault();
+    this.props.finish();
+    console.log('Submitted');
   }
 
   changeFullName = (e) => {
@@ -162,7 +165,8 @@ const mapDispatchToProps = dispatch => ({
   salaryChanged: (val) => dispatch(salaryChange(val)),
   commitValidationResult: (val) => dispatch(validationResult(val)),
   showNextStep: () => dispatch(showNext()),
-  showPreviousStep: () => dispatch(showPrevious())
+  showPreviousStep: () => dispatch(showPrevious()),
+  finish: () => dispatch(finish())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormView);
